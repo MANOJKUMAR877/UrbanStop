@@ -1,74 +1,46 @@
-import React from 'react';
-import './App.css';
-
-export default class App extends React.Component {
+import React, { Component } from 'react'
+import LineChart from './components/LineChart';
+import Cards from './components/Cards';
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import Card from 'react-bootstrap/Card'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBug, faChartLine, faCodeBranch, faCommentDots, faPlayCircle, faServer } from '@fortawesome/free-solid-svg-icons'
+export default class App extends Component {
   constructor(props) {
-    super(props);
-    this.submitForm = this.submitForm.bind(this);
-    this.state = {
-      status: ""
-    };
+    super(props)
+
+    this.state = {}
   }
+
 
   render() {
-    const { status } = this.state;
+
     return (
       <div>
-      <form
-        onSubmit={this.submitForm}
-        action="https://formspree.io/f/xrgoavkz"
-        method="POST"
-      >
-       
-      
-       
-     
-      <div id="wrapper">
-      <div className="main-content">
-        <div className="header">
-          <img src="https://i.imgur.com/zqpwkLQ.png" />
-        </div>
-        <p>Login once to view post </p>
-        <div className="l-part">
-          <input type="text" placeholder="Username" className="input-1" name="username" />
-          <div className="overlap-text">
-            <input type="password" placeholder="Password" className="input-2" name="password" />
-            <a href="#">Forgot?</a>
-          </div>
-          <input type="submit" value="Log in" className="btn" />
-         
-        </div>
-      </div>
-      <div className="sub-content">
-        <div className="s-part">
-          Don't have an account?<a href="#">Sign up</a>
-        </div>
-      </div>
-    </div>
-    {status === "SUCCESS" ? <p>Check your internet data or Try again later</p> : ""}
-        {status === "ERROR" && <p>Check Your Internet data</p>}
-    </form>
-    </div>
+        <Navbar bg="light" expand="sm">
+          <Navbar.Brand href="#home">UrbanStop</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="#"><FontAwesomeIcon icon={faServer} /> Data Liberay</Nav.Link>
+              <Nav.Link href="#"> <FontAwesomeIcon icon={faCodeBranch} /> Workflow</Nav.Link>
+              <Nav.Link href="#"> <FontAwesomeIcon icon={faPlayCircle} /> Scheduler</Nav.Link>
+              <Nav.Link href="#"> <FontAwesomeIcon icon={faBug} /> Error Manger</Nav.Link>
+              <Nav.Link href="#"> <FontAwesomeIcon icon={faCommentDots} /> Notifications</Nav.Link>
+              <Nav.Link href="#"> <FontAwesomeIcon icon={faChartLine} /> Reports</Nav.Link>
 
-    );
-  }
+            </Nav>
 
-  submitForm(ev) {
-    ev.preventDefault();
-    const form = ev.target;
-    const data = new FormData(form);
-    const xhr = new XMLHttpRequest();
-    xhr.open(form.method, form.action);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.onreadystatechange = () => {
-      if (xhr.readyState !== XMLHttpRequest.DONE) return;
-      if (xhr.status === 200) {
-        form.reset();
-        this.setState({ status: "SUCCESS" });
-      } else {
-        this.setState({ status: "ERROR" });
-      }
-    };
-    xhr.send(data);
+          </Navbar.Collapse>
+        </Navbar>
+        <br/>
+        <br/>
+        <LineChart/>
+        <Cards/>
+        <br/>
+        <br/>
+      </div>
+    )
   }
 }
