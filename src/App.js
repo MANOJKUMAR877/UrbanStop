@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import LineChart from './components/LineChart';
+import Chart from './components/Chart';
 import Cards from './components/Cards';
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBug, faChartLine, faCodeBranch, faCommentDots, faPlayCircle, faServer } from '@fortawesome/free-solid-svg-icons'
 export default class App extends Component {
@@ -34,12 +33,14 @@ export default class App extends Component {
 
           </Navbar.Collapse>
         </Navbar>
+        <br />
+        <br />
+        <Chart/>
         <br/>
-        <br/>
-        <LineChart/>
-        <Cards/>
-        <br/>
-        <br/>
+        <Cards />
+
+        <br />
+        <br />
       </div>
     )
   }
